@@ -1,37 +1,54 @@
-# forScore Library Search — Shared preview
+# forScore Library Search — Preview
 
-Search your forScore scores and bookmarks from Alfred. Press Return to open a result, or Command-C to copy a Markdown link. Each result uses the icon from your installed forScore app.
+Search your forScore scores and bookmarks from Alfred. Press **Return** to open a result or **Command-C** to copy a Markdown link. Results display the icon from your installed forScore app.
 
-## Install
+> Preview: full-library export reliability is still being tested. Large exports may take a long time or be interrupted.
 
-1. Install forScore for Mac and Alfred with Powerpack. forScore must expose its score and bookmark actions in Shortcuts.
-2. Download and open [Export forScore Index - Shared.shortcut](Export%20forScore%20Index%20-%20Shared.shortcut?raw=true) to add it to Shortcuts.
-3. Download and open [forScore Library Search - Shared.alfredworkflow](forScore%20Library%20Search%20-%20Shared.alfredworkflow?raw=true) to install it in Alfred.
-4. Open forScore and run **Export forScore Index - Shared** in Shortcuts. Review any requested permissions. The shortcut uses shell scripts to save its local index.
-5. Wait for the shortcut to finish, then open Alfred and type **fsc** followed by a title. The shared keyword differs from the original personal workflow's `fs` so they can coexist.
+## Requirements
 
-## How it works
+- A Mac with forScore and its Shortcuts actions.
+- Alfred with Powerpack.
+- Apple Shortcuts with permission to run the included shell actions.
 
-The shortcut asks forScore for scores in the current library and for bookmarks, creates automation URLs, saves progress, then validates and deduplicates the records. The completed index lives in `~/Library/Application Support/forScore Alfred/forscore-index.tsv`. An interrupted export leaves any previous completed index in place. Only run one export at a time. A new run archives previous progress and starts over.
+No separate Python installation is needed to use the tools.
 
-Search matches titles and parent PDF filenames without regard to case or accents, showing up to 200 results. Links are preserved as supplied by forScore. Re-export after changing filenames, bookmark names, or library contents. These links are not immutable identifiers.
+## Install and use
 
-The package contains no scores or personal library index. Each recipient exports their own library. Search and export use macOS's built-in Perl and shell tools; Python is only needed to run the optional development tests.
+1. Download and open [Export forScore Index - Shared.shortcut](Export%20forScore%20Index%20-%20Shared.shortcut?raw=true).
+2. Download and open [forScore Library Search - Shared.alfredworkflow](forScore%20Library%20Search%20-%20Shared.alfredworkflow?raw=true).
+3. Open forScore and run **Export forScore Index - Shared** in Shortcuts. Review any permission requests.
+4. Keep forScore available and your Mac awake until the shortcut finishes.
+5. Open Alfred and type **fsc** followed by a score or bookmark title.
 
-## Preview status and limitations
+Search also matches the parent PDF filename and ignores case and accents. Up to 200 matches are displayed; narrow the query to find more specific results.
 
-The original personal workflow's search, opening scores/bookmarks, and Markdown copying have been checked. The portable writer and search pass automated tests for Unicode search, duplicate removal, Markdown escaping, the result limit, and preserving the previous index on invalid input.
+## Refreshing your library
 
-A complete refresh of the revised shortcut has **not yet been verified**. The latest personal run stopped after 1,544 records. The previously recovered personal index remains usable. Large exports are slow; keep the Mac awake and forScore available. This preview should not yet be presented as a stable release.
+Run the shortcut again after adding, removing, or renaming library items. Links use filenames and bookmark names, so a rename can make an older link stop working.
 
-Score thumbnails are not exported. Result icons come from `~/Applications/forScore.app` or `/Applications/forScore.app`. An app installed elsewhere will use Alfred's default icon. This is an independent integration, not an official forScore or Alfred product.
+Only run one export at a time. Each run starts a fresh export and archives earlier progress. The previous completed index stays available until a new export succeeds.
 
-## Source
+If Alfred says to run the shortcut first, the initial export has not finished successfully. Check Shortcuts for an error or permission request before retrying.
 
-Download [the source archive](forScore-Shared-Preview-Source.zip?raw=true) to inspect or modify these files. The current shared exporter is running; full-library completion is still pending.
+## Local storage and privacy
 
-- `workflow/`: Alfred configuration, search, and URL opener.
-- `shortcut-scripts/`: readable copies of the shell actions embedded in the shared shortcut.
-- `tests/`: isolated tests; run `python3 -m unittest discover -s tests` from this folder.
+Each user builds an index from their own forScore library. The downloads contain no scores or library index. The tools do not upload your library.
 
-For public distribution, start with a GitHub preview release and collect feedback. Alfred recommends sharing on its forum before Gallery consideration: https://alfred.app/submit/
+The index and progress files are stored in:
+
+`~/Library/Application Support/forScore Alfred/`
+
+Here, `~` means the current user's home folder. Exported titles and links are stored locally in that folder.
+
+## Limitations
+
+- Full-library export reliability is still being validated.
+- Scores are requested from forScore's current library; multi-library coverage has not been verified.
+- Score thumbnails are not included. The forScore icon is read from `/Applications/forScore.app` or `~/Applications/forScore.app`; other install locations use Alfred's default icon.
+- This is an independent integration, not an official forScore or Alfred product.
+
+## Source and feedback
+
+Download [the source archive](forScore-Shared-Preview-Source.zip?raw=true) to inspect the workflow and exporter scripts. It includes isolated tests, which developers can run with `python3 -m unittest discover -s tests`.
+
+Report problems through this repository's Issues page. Include the error message and relevant app versions; do not attach your library index or scores.

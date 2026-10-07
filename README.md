@@ -1,8 +1,6 @@
-# forScore Library Search — Preview
+# forScore Library Search
 
 Search your forScore scores and bookmarks from Alfred. Press **Return** to open a result or **Command-C** to copy a Markdown link. Results display the icon from your installed forScore app.
-
-> Preview: full-library export reliability is still being tested. Large exports may take a long time or be interrupted.
 
 ## Requirements
 
@@ -40,7 +38,7 @@ The index and progress files are stored in:
 
 Here, `~` means the current user's home folder. Exported titles and links are stored locally in that folder.
 
-## Limitations
+## Troubleshooting and limitations
 
 - Full-library export reliability is still being validated.
 - Scores are requested from forScore's current library; multi-library coverage has not been verified.
@@ -49,6 +47,6 @@ Here, `~` means the current user's home folder. Exported titles and links are st
 
 ## Source and feedback
 
-Download [the source archive](forScore-Shared-Preview-Source.zip?raw=true) to inspect the workflow and exporter scripts. It includes isolated tests, which developers can run with `python3 -m unittest discover -s tests`.
+Download [the source archive](forScore-Shared-Source.zip?raw=true) to inspect the workflow and exporter scripts. It includes isolated tests, which developers can run with `python3 -m unittest discover -s tests`.
 
 Report problems through this repository's Issues page. Include the error message and relevant app versions; do not attach your library index or scores.

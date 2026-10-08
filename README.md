@@ -1,7 +1,8 @@
 # forScore Library Search
 
-Search your forScore scores and bookmarks from Alfred. Press **Return** to open a result or **Command-C** to copy a Markdown link. Results display the icon from your installed forScore app.
+Search your forScore scores directly from Alfred. A companion Mac shortcut builds a local index of scores and bookmarks. The Alfred workflow lets you search your library by title, open a result, or copy a Markdown link to your clipboard.
 
+Press **Return** to open a result or **Command-C** to copy its Markdown link. Results display the icon from your installed forScore app.
 ## Requirements
 
 - A Mac with forScore and its Shortcuts actions.
